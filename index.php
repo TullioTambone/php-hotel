@@ -47,15 +47,6 @@
         ]
     ];
 
-    $bool = '';
-    foreach($hotels as $hotel){
-        if($hotel['parking'] != true){
-            $bool = "non presente";
-        }else{
-            $bool = "presente";
-        }
-    }
-
 ?>
 
 <!doctype html>
@@ -84,7 +75,7 @@
                     echo "<tr>" .
                         "<td>" . $hotel['name'] . "</td>" .
                         "<td>" . $hotel['description'] . "</td>" .
-                        "<td>" . $bool . "</td>" . 
+                        "<td>" . ($hotel['parking'] ? 'presente' : 'non Presente') . "</td>" . 
                         "<td>" . $hotel['vote'] . "</td>" . 
                         "<td>" . $hotel['distance_to_center'] . "</td>"
                     . "</tr>";
