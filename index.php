@@ -53,9 +53,11 @@
     $filtroVoto = array_filter($hotels, function ($element) use ($voto, $parcheggio) {
         if ($element['vote'] >= $voto && $element['parking'] == ($parcheggio === 'true')) {
             return true;
+        } else{
+            return false;
         }
-        return false;
     });
+    var_dump($voto, $parcheggio)
 ?>
 
 <!doctype html>
@@ -114,6 +116,18 @@
                         "<td>" . $hotel['vote'] . "</td>" . 
                         "<td>" . $hotel['distance_to_center'] . "</td>" . 
                     "</tr>";
+                };
+            } elseif($parcheggio == '' && $voto != ''){
+                foreach ($hotels as $hotel) {
+                    if($hotel['vote'] >= $voto){
+                        echo "<tr>" . 
+                            "<td>" . $hotel['name'] . "</td>" . 
+                            "<td>" . $hotel['description'] . "</td>" . 
+                            "<td>" . ($hotel['parking'] ? 'presente' : 'non presente') . "</td>" . 
+                            "<td>" . $hotel['vote'] . "</td>" . 
+                            "<td>" . $hotel['distance_to_center'] . "</td>" . 
+                        "</tr>";
+                    };
                 };
             } else{
 
